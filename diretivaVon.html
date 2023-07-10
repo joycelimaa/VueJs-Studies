@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>V-on</title> 
+
+    <style>
+        .green{
+            background-color: green;
+        }
+
+        .blue{
+            background-color: blue;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app"> 
+        <input type="text" @keyup="imprimirTexto('enviando parametro', 5, xyz)">
+        <button v-on:click="mensagemAlerta($event, 'text', 100)">Botão</button>
+    </div>
+
+    <script>
+        // @ é a mesma coisa que v-on:
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                xyz: true,
+            },
+            methods: {
+                imprimirTexto(text, n, x){
+                    console.log(text)
+                    console.log(n)
+                    console.log(x)
+                },
+                mensagemAlerta(event, p1, p2){
+                    console.log(event, p1, p2)
+                }
+            },
+        })
+    </script>
+
+</body>

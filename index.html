@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    <div id="app">
+        {{menssagem}} <br>
+        Valor Total: {{valorTotal}}<br>
+        logado: {{logado}} <br>
+        Hobbies: {{hobbies[0]}} <br>
+        Perfil: {{perfil.nome}}, {{perfil.cursos[0].nome}} 
+    </div>
+    -->
+
+
+    <div id="app">
+        {{somar()}} <br>
+        {{subtrair()}} <br>
+        {{multiplicar()}} <br>
+        {{dividir()}} <br>
+        
+    </div>
+   
+
+    <script>
+        /*
+        const vm = new Vue( {
+            el: '#app', //#-> id; .-> class
+            data: { //atributos reativos
+                menssagem: 'Primeiro template controlado pelo vue',
+                valorTotal: 180.99,
+                logado: true,
+                hobbies:['croche', 'pintar', 'desenhar'],
+                perfil: {
+                    nome: 'joy',
+                    cor: 'verde',
+                    cursos:[
+                        {nome: 'redes', carga: '22h'},
+                        {nome: 'js básico', carga: '10h'},
+                    ]
+                }
+            }
+        }) //vm = viewmodel*/
+
+        // DEFINIÇÃO DE FUNÇÕES
+        const vm = new Vue({
+            el:'#app',
+            data: {
+                n1: 10,
+                n2: 5
+            },
+            methods: {
+                somar: function somar(){
+                    return this.n1 + this.n2
+                },
+
+                subtrair: function(){ //função anonima
+                    return this.n1 - this.n2
+                }, 
+
+                multiplicar: () =>{ //arrow function
+                    return 2*4
+                },
+
+                dividir() {
+                    return this.n1 / this.n2
+                },
+
+            }
+        })
+
+       
+
+    </script>
+</body>
+</html>

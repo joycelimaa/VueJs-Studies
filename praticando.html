@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>V-on</title> 
+
+    <style>
+        .green{
+            background-color: green;
+        }
+        .branco{
+            background-color: aliceblue;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .red{
+            background-color: red;
+        }
+        .borda{
+            border: 1px solid black;
+        }
+        .div-principal{
+            width: 200px;
+            height: 200px;
+        }
+        .div-comum{
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="borda div-principal" :class="cor">
+            Cor: {{cor}}
+            <br>
+            posição x: {{posicaoX}} <br>
+            posição y: {{posicaoY}}
+
+        </div>
+        <hr>
+        <div 
+            @click="mudarCor('green')" 
+            class="borda div-comum">
+        </div>
+        <div 
+            @mouseover="mudarCor('blue')" 
+            @mouseout="mudarCor('red')" 
+            class="borda div-comum">
+        </div>
+        <div @mousemove="coordenadas($event)" class="borda div-comum"></div>
+    </div>
+    
+
+    <script>
+         const vm = new Vue({
+            el: '#app',
+            data: {
+               cor:'branco',
+               posicaoX: 0,
+               posicaoY: 0,
+            },
+            methods: {
+               mudarCor(color){
+                this.cor = color //referencia o cor que está no data
+               },
+               coordenadas(evento){
+                this.posicaoX = evento.clientX
+                this.posicaoY = evento.clientY
+                
+                }
+            },
+            
+        })
+    </script>
+</body>
+
+<!--
+ANOTAÇÕES:
+
+-v-on: permite capturar o disparo de um determinado evento sob uma certa tag html
+
+-->

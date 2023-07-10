@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>V-show</title> 
+
+
+</head>
+<body>
+    <div id="app"> 
+        <ul>
+            <li v-for="c in comentarios">{{c.id}} - {{c.comentario}}</li>
+        </ul>
+        <button @click="addElemento()">Add Elemento</button>
+        <button @click="removerElemento()">Remover elemento</button>
+        <button @click="modificarElemento()">Atualizar</button>
+        <hr>
+
+        <ul>
+            <li v-for="n in numero">{{n}}</li>
+        </ul>
+        <hr>
+
+        <ul>
+            <!-- <li v-for="(curso, key) in cursos" >{{key}} - {{curso}}</li> -->
+            <li v-for="(curso, key) in cursos" v-text="key +'-'+ curso"></li>
+        </ul>
+        <hr>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--
+                <tr v-for="(curso, chave) in cursos2">
+                    <td>{{chave}}</td>
+                    <td>{{curso.titulo}}</td>
+                    <td>{{curso.descricao}}</td>
+                </tr>
+                -->
+
+                <!-- Outra forma de fazer -->
+                <tr v-for="({titulo, descricao}, chave) in cursos2"> <!-- destructing assigment-->
+                    <td>{{chave}}</td>
+                    <td>{{titulo}}</td>
+                    <td>{{descricao}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+
+        <ul>
+            <li v-for="p in publicacoes" style="border: 1px solid; margin-bottom: 20px;" :key="p.id">
+                {{p.publicacao}}
+                <hr>
+                <input type="text">
+            </li>
+        </ul>
+        <button @click="misturarArray()">Misturar publicação</button>
+    </div>
+
+    <script>
+       
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                comentarios: [
+                    {id: 1, comentario: 'comentario 1'},
+                    {id: 2, comentario: 'comentario 2'},
+                    {id: 3, comentario: 'comentario 3'},
+                ],
+                numero: 5,
+                cursos: ['js', 'express', 'nodeJs', 'vueJs'],
+                cursos2:{
+                    1000:{
+                        titulo: 'React',
+                        descricao: 'Framework js'
+                    },
+                    1001:{
+                        titulo: 'Banco de dados',
+                        descricao: 'Sql'
+                    },
+                },
+                publicacoes: [
+                    { id:1, publicacao: 'publicação 1'},
+                    { id:2, publicacao: 'publicação 2'},
+                    { id:3, publicacao: 'publicação 3'},
+                ],
+
+            },
+            methods: {
+                misturarArray(){
+                    let misturado = []
+
+                    misturado[0] = this.publicacoes[2]
+                    misturado[1] = this.publicacoes[0]
+                    misturado[2] = this.publicacoes[1]
+
+                    this.publicacoes = misturado
+                },
+                addElemento(){
+                    this.comentarios.push({id: 4, comentario: 'novo comentário'}) 
+                    console.log(this.comentarios);
+                },
+                removerElemento(){
+                    this.comentarios.pop({id: 4, comentario: 'novo comentário'}) 
+                },
+                modificarElemento(){
+                    //this.comentarios[1] = {id:2, comentario: 'Comentário 2 atualizado'}
+                    //console.log(this.comentarios);
+                    this.$set(this.comentarios, 1, {id:2, comentario: 'comentário 2 atualizado'})
+                },
+            },
+        })
+    </script>
+
+</body>

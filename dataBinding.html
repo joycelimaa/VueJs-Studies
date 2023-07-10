@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Data Binding</title> 
+
+    <style>
+        .green{
+            background-color: green;
+        }
+
+        .blue{
+            background-color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        {{2+2}}
+        <input :value= "2+2" :class=" test ? 'green' : style">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el:"#app",
+            data: {
+                message: "Expression",
+                style: "blue",
+                test: false,
+            },
+            methods: {},
+        })
+
+    </script>
+
+</body>
